@@ -34,7 +34,7 @@ const upload = multer({ storage }, fileFilter);
 
 router
   .route("/")
-  .get(verifyToken, allowedTo(usersRoles.ADMIN), controllers.getAllUsers);
+  .get(verifyToken, allowedTo(usersRoles.USER), controllers.getAllUsers);
 router.route("/register").post(upload.single("avatar"), controllers.register);
 router.route("/login").post(controllers.login);
 

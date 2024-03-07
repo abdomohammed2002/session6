@@ -7,14 +7,8 @@ const generateToken = require("../utils/generateToken");
 
 const getAllUsers = asyncWrapper(async (req, res, next) => {
   const users = await User.find({}, { __v: false, password: false });
-  const page = req.query.page || 1;
-  const limit = req.query.limit || 5;
-  const skip = (page - 1) * limit;
-  res
-    .status(200)
-    .json({ status: httpStatusText.SUCCESS, data: { users } })
-    .limit(limit)
-    .skip(skip);
+  res.status(200).json({ status: httpStatusText.SUCCESS, data: { users } });
+  next();
 });
 
 const register = asyncWrapper(async (req, res, next) => {
