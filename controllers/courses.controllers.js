@@ -4,10 +4,10 @@ const asyncWrapper = require("../middleware/asyncWrapper");
 const appErrors = require("../utils/appErrors");
 
 const getAllCourses = asyncWrapper(async (req, res, next) => {
-  const { limit, page } = req.query;
-  const skip = (page - 1) * limit;
-  const courses = await Course.find({}, { __v: false }).limit(limit).skip(skip);
-  res.json({ status: httpStatusText.SUCCESS, data: { courses } });
+  // const { limit =4, skip=2 } = req.query;
+  const courses = await Course.find({}, { __v: false });
+  // .limit(limit).skip(skip);
+  res.status(200).json({ status: httpStatusText.SUCCESS, data: { courses } });
 });
 const getOneCourse = asyncWrapper(async (req, res, next) => {
   const courseId = req.params.courseId;
