@@ -8,7 +8,8 @@ const path = require("path");
 var cors = require("cors");
 require("dotenv").config();
 
-const url = process.env.MONGO_URL;
+const url =
+  "mongodb+srv://abdo:nodejs-123@courses.z4fthcw.mongodb.net/node-course?retryWrites=true&w=majority&appName=courses";
 const main = async () => {
   await mongoose.connect(url);
   console.log("mongoose connect");
@@ -19,7 +20,7 @@ app.use(express.json());
 app.use("/api/courses", coursesRouter);
 app.use("/api/users", usersRouter);
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
-app.use(cors());
+// app.use(cors());
 app.use((error, req, res, next) => {
   res
     .status(error.statusCode)
