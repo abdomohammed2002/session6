@@ -7,7 +7,9 @@ const getAllCourses = asyncWrapper(async (req, res, next) => {
   const { limit = 2, page = 1 } = req.query;
   const skip = (page - 1) * limit;
   const courses = await Course.find({}, { __v: false }).limit(limit).skip(skip);
-  res.status(200).json({ status: httpStatusText.SUCCESS, data: { courses } });
+  return res
+    .status(200)
+    .json({ status: httpStatusText.SUCCESS, data: { courses } });
 });
 
 const getOneCourse = asyncWrapper(async (req, res, next) => {
