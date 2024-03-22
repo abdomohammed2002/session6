@@ -17,10 +17,10 @@ const main = async () => {
 main().catch((err) => console.log({ err: err }));
 
 app.use(express.json());
+app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 app.use("/api/courses", coursesRouter);
 app.use("/api/users", usersRouter);
-app.use("/uploads", express.static(path.join(__dirname, "uploads")));
-// app.use(cors());
+app.use(cors());
 app.use((error, req, res, next) => {
   res
     .status(error.statusCode)
